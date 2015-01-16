@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
   devise_for :users
+
   resources :articles do
     resources :comments
+    get 'tag/:tag_name' => 'articles#tag', on: :collection
   end
 
+  resources :contact_mes, only: [:create]
   root 'articles#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
